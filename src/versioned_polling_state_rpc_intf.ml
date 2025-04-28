@@ -101,11 +101,12 @@ module type Versioned_polling_state_rpc = sig
       └−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−−┘
       v}
 
-      Importantly, stable responses and diffs are what get sent over the wire, but they are
-      immediately converted to unstable responses and diffs before applying the diffs.  This
-      performs well when the responses are large relative to the diffs (which is expected to
-      be the common case).  Small diffs are sent over the wire, converted to the unstable
-      diff type, and then applied to the previous (possibly very large) response. *)
+      Importantly, stable responses and diffs are what get sent over the wire, but they
+      are immediately converted to unstable responses and diffs before applying the diffs.
+      This performs well when the responses are large relative to the diffs (which is
+      expected to be the common case). Small diffs are sent over the wire, converted to
+      the unstable diff type, and then applied to the previous (possibly very large)
+      response. *)
   module Make_stable_response
       (Unstable : Response.Unstable)
       (Stable : Response.Stable)
@@ -119,7 +120,7 @@ module type Versioned_polling_state_rpc = sig
       (?initial_query:'query -> unit -> ('query, 'response) Polling_state_rpc.Client.t)
         Babel.Caller.t
 
-    (** Create a [caller] from a single Polling_state_rpc.t.  Callers can be combined in
+    (** Create a [caller] from a single Polling_state_rpc.t. Callers can be combined in
         the typical babel way, e.g. using [Babel.Caller.of_list_decreasing_preference]. *)
     val create_caller
       :  ('query, 'response) Polling_state_rpc.t
