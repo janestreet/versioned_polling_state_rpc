@@ -16,7 +16,7 @@ depends: [
   "core"
   "polling_state_rpc"
   "ppx_jane"
-  "dune"              {>= "3.11.0"}
+  "dune"              {>= "3.17.0"}
 ]
 available: arch != "arm32" & arch != "x86_32"
 synopsis: "Helper functions for creating stable/versioned `Polling_state_rpc.t`s with babel."
